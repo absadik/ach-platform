@@ -70,7 +70,14 @@
     <!-- REGISTRATION FORM (Hidden by default) -->
     <div id="registerSection" class="hidden flex-grow flex items-center justify-center p-4 py-10">
         <div class="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-md border border-gray-700">
-            <h2 class="text-3xl font-bold text-center text-gold mb-6">Join ACH</h2>
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gold">Join ACH</h2>
+                <!-- Language Selector -->
+                <select class="bg-navy text-white text-sm border border-gray-600 rounded p-1">
+                    <option>English</option>
+                    <option>Hausa</option>
+                </select>
+            </div>
             
             <form class="space-y-4">
                 <div>
@@ -80,6 +87,11 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
                     <input type="email" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md focus:outline-none focus:border-electric text-white" placeholder="you@example.com">
+                </div>
+                <!-- NEW PHONE NUMBER FIELD -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Phone Number</label>
+                    <input type="tel" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md focus:outline-none focus:border-electric text-white" placeholder="+234 800 000 0000">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1">I am registering as a:</label>
@@ -117,4 +129,4 @@
         }
     </script>
 </body>
-</html>
+    </html>
