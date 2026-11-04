@@ -1,6 +1,6 @@
 const supabaseUrl = 'https://xiqdygzcotzhqfxjrumr.supabase.co';
 const supabaseKey = 'sb_publishable_faOCdh8iXeuV6x64S5U25w_J-a7vpp2';
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
 const translations = {
     en: {
@@ -65,7 +65,8 @@ async function registerUser(event) {
     const password = document.getElementById('ph-login-pass').value;
     const fullName = document.getElementById('ph-name').value;
     
-    const { data, error } = await supabase.auth.signUp({
+    // Notice we changed this to supabaseClient
+    const { data, error } = await supabaseClient.auth.signUp({
         email: email,
         password: password,
         options: {
