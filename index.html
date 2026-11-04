@@ -4,129 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABSADIK CREATOR HUB</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: '#0A192F',
-                        electric: '#007BFF',
-                        gold: '#FFD700',
-                    }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: { colors: { navy: '#0A192F', electric: '#007BFF', gold: '#FFD700' } } } }
     </script>
 </head>
 <body class="bg-navy text-white font-sans min-h-screen flex flex-col">
 
-    <!-- Header -->
-    <header class="p-6 flex justify-between items-center border-b border-gray-700">
-        <h1 class="text-xl font-bold text-gold tracking-wider">ABSADIK CREATOR HUB</h1>
-        <button onclick="showRegister()" class="bg-electric text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-600 transition">Sign Up</button>
+    <!-- HEADER -->
+    <header class="p-4 flex justify-between items-center border-b border-gray-700">
+        <h1 class="text-lg font-bold text-gold tracking-wider cursor-pointer" onclick="showPage('home')" id="main-header">ABSADIK CREATOR HUB</h1>
+        <div class="flex gap-2">
+            <button onclick="showPage('login')" class="text-white px-3 py-1 rounded-md text-sm border border-gray-600" id="nav-login">Login</button>
+            <button onclick="showPage('register')" class="bg-electric text-white px-3 py-1 rounded-md font-semibold text-sm" id="nav-signup">Sign Up</button>
+        </div>
     </header>
 
-    <!-- MAIN HOMEPAGE -->
-    <div id="homepage">
+    <!-- 1. HOMEPAGE -->
+    <div id="page-home" class="flex-grow flex flex-col">
         <main class="flex-grow flex flex-col items-center justify-center text-center px-4 py-16">
-            <h2 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
-                Connect. Create. <span class="text-gold">Advertise Globally.</span>
+            <h2 class="text-4xl font-extrabold mb-4 leading-tight">
+                <span id="hero-title-1">Connect. Create.</span> <span class="text-gold" id="hero-title-2">Advertise Globally.</span>
             </h2>
-            <p class="text-gray-300 max-w-2xl mb-8">
-                The global marketplace connecting top content creators, celebrities, companies, and media organizations.
-            </p>
-            <button onclick="showRegister()" class="bg-electric text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-blue-600 transition shadow-lg shadow-blue-500/50">
-                Get Started Free
-            </button>
+            <p class="text-gray-300 max-w-2xl mb-8" id="hero-desc">The global marketplace connecting top creators, celebrities, companies, and media.</p>
+            <button onclick="showPage('register')" class="bg-electric text-white px-8 py-3 rounded-full font-bold text-lg" id="hero-btn">Get Started Free</button>
         </main>
-
-        <section class="px-6 pb-16 max-w-6xl mx-auto w-full">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-gold transition">
-                    <h3 class="text-xl font-bold text-gold mb-2">Content Creators</h3>
-                    <p class="text-sm text-gray-400 mb-4">Offer your video, posting, and UGC services to global brands.</p>
-                    <button onclick="showRegister()" class="text-electric font-semibold hover:text-white">Join Now &rarr;</button>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-gold transition">
-                    <h3 class="text-xl font-bold text-gold mb-2">Celebrities & Talent</h3>
-                    <p class="text-sm text-gray-400 mb-4">Manage your bookings, brand ambassadorships, and appearances.</p>
-                    <button onclick="showRegister()" class="text-electric font-semibold hover:text-white">Join Now &rarr;</button>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-gold transition">
-                    <h3 class="text-xl font-bold text-gold mb-2">Companies</h3>
-                    <p class="text-sm text-gray-400 mb-4">Launch campaigns, find talent, and track deliverables securely.</p>
-                    <button onclick="showRegister()" class="text-electric font-semibold hover:text-white">Join Now &rarr;</button>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-gold transition">
-                    <h3 class="text-xl font-bold text-gold mb-2">Media Orgs</h3>
-                    <p class="text-sm text-gray-400 mb-4">List TV, radio, and online advertising inventory globally.</p>
-                    <button onclick="showRegister()" class="text-electric font-semibold hover:text-white">Join Now &rarr;</button>
-                </div>
-            </div>
-        </section>
     </div>
 
-    <!-- REGISTRATION FORM (Hidden by default) -->
-    <div id="registerSection" class="hidden flex-grow flex items-center justify-center p-4 py-10">
-        <div class="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-md border border-gray-700">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-3xl font-bold text-gold">Join ACH</h2>
-                <!-- Language Selector -->
-                <select class="bg-navy text-white text-sm border border-gray-600 rounded p-1">
-                    <option>English</option>
-                    <option>Hausa</option>
+    <!-- 2. REGISTRATION -->
+    <div id="page-register" class="hidden flex-grow flex items-center justify-center p-4 py-10">
+        <div class="bg-gray-800 p-6 rounded-xl shadow-2xl w-full max-w-lg border border-gray-700">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold text-gold" id="form-title">Join ACH</h2>
+                <select id="language-select" onchange="changeLanguage(this.value)" class="bg-navy text-white text-sm border border-gray-600 rounded p-2">
+                    <option value="en">English</option>
+                    <option value="ha">Hausa</option>
+                    <option value="fr">Français</option>
+                    <option value="ar">العربية</option>
                 </select>
             </div>
             
-            <form class="space-y-4">
+            <form class="space-y-4" onsubmit="registerUser(event)">
                 <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-1">Full Name / Company Name</label>
-                    <input type="text" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md focus:outline-none focus:border-electric text-white" placeholder="Enter your name">
+                    <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-name">Full Name / Company</label>
+                    <input type="text" id="ph-name" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white" placeholder="Enter your name" required>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-email">Email</label>
+                        <input type="email" id="ph-email" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white" placeholder="you@example.com" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-phone">Phone</label>
+                        <input type="tel" id="ph-phone" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white" placeholder="+234...">
+                    </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
-                    <input type="email" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md focus:outline-none focus:border-electric text-white" placeholder="you@example.com">
+                    <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-password">Password</label>
+                    <input type="password" id="ph-login-pass" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white" placeholder="Create a password" required>
                 </div>
-                <!-- NEW PHONE NUMBER FIELD -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-1">Phone Number</label>
-                    <input type="tel" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md focus:outline-none focus:border-electric text-white" placeholder="+234 800 000 0000">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-1">I am registering as a:</label>
-                    <select class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md focus:outline-none focus:border-electric text-white">
-                        <option>Content Creator</option>
-                        <option>Celebrity & Talent</option>
-                        <option>Company & Advertiser</option>
-                        <option>Media Organisation</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-1">Password</label>
-                    <input type="password" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md focus:outline-none focus:border-electric text-white" placeholder="Create a strong password">
-                </div>
-                <button type="button" class="w-full bg-electric hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-md transition duration-200 mt-6">
-                    Create Free Account
-                </button>
+                <button type="submit" class="w-full bg-electric font-bold py-3 rounded-md mt-4" id="btn-submit">Create Account & Verify</button>
             </form>
-            <p class="text-center text-sm text-gray-400 mt-6">
-                <button onclick="showHome()" class="text-electric hover:text-white">Go back to Homepage</button>
-            </p>
         </div>
     </div>
 
-    <!-- Simple JavaScript to switch pages -->
-    <script>
-        function showRegister() {
-            document.getElementById('homepage').classList.add('hidden');
-            document.getElementById('registerSection').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
-        function showHome() {
-            document.getElementById('registerSection').classList.add('hidden');
-            document.getElementById('homepage').classList.remove('hidden');
-        }
-    </script>
+    <!-- 3. OTP SCREEN -->
+    <div id="page-otp" class="hidden flex-grow flex items-center justify-center p-4">
+        <div class="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-md border border-gray-700 text-center">
+            <h2 class="text-2xl font-bold text-gold mb-2" id="otp-title">Verify Account</h2>
+            <p class="text-sm text-gray-400 mb-4">Check your email for the OTP code.</p>
+            <button onclick="showPage('login')" class="w-full bg-gold text-navy font-bold py-3 rounded-md mt-4" id="btn-verify">Verify & Login</button>
+        </div>
+    </div>
+
+    <!-- 4. LOGIN SCREEN -->
+    <div id="page-login" class="hidden flex-grow flex items-center justify-center p-4">
+        <div class="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-md border border-gray-700 text-center">
+            <h2 class="text-2xl font-bold text-gold mb-6" id="login-title">Login to ACH</h2>
+            <input type="email" id="ph-login-email" class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-md mb-4" placeholder="Email Address">
+            <input type="password" id="ph-login-pass-login" class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-md mb-4" placeholder="Password">
+            <button onclick="window.location.href='dashboard.html'" class="w-full bg-electric font-bold py-3 rounded-md mb-4" id="btn-login">Login</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
     </html>
