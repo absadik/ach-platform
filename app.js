@@ -1,5 +1,5 @@
-const supabaseUrl = 'PASTE_YOUR_PROJECT_URL_HERE';
-const supabaseKey = 'PASTE_YOUR_PUBLISHABLE_KEY_HERE';
+const supabaseUrl = 'https://xiqdygzcotzhqfxjrumr.supabase.co';
+const supabaseKey = 'sb_publishable_faOCdh8iXeuV6x64S5U25w_J-a7vpp2';
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
 const translations = {
