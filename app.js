@@ -81,7 +81,7 @@ function changeLanguage(lang) {
     if(document.getElementById('ph-confirm')) document.getElementById('ph-confirm').placeholder = t.phConfirm;
 
     if(document.getElementById('terms-page-title')) document.getElementById('terms-page-title').innerText = t.termsTitle;
-    if(document.getElementById('terms-page-content')) document.getElementById('terms-page-content').innerText = t.termsContent;
+    if(document.getElementById('terms-page-content')) document.getElementById('terms-page-content').innerHTML = t.termsContent;
 
     if(document.getElementById('lbl-terms')) {
         document.getElementById('lbl-terms').innerHTML = `${t.agreeText} <a href="#" onclick="showPage('terms')" class="text-gold underline">${t.termsLink}</a> ${t.andText} <a href="#" onclick="showPage('terms')" class="text-gold underline">${t.privacyLink}</a>.`;
@@ -91,13 +91,17 @@ function changeLanguage(lang) {
 }
 
 function showPage(pageId) {
+    // Hide ALL pages first
     const pages = ['home', 'register', 'otp', 'login', 'terms'];
     pages.forEach(id => {
         const el = document.getElementById('page-' + id);
         if (el) el.classList.add('hidden');
     });
+    
+    // Then show the selected page
     const target = document.getElementById('page-' + pageId);
     if (target) target.classList.remove('hidden');
+    
     window.scrollTo(0, 0);
 }
 
@@ -106,10 +110,10 @@ function togglePassword(inputId, btnId) {
     const btn = document.getElementById(btnId);
     if (input.type === "password") {
         input.type = "text";
-        btn.innerText = "🙈"; 
+        btn.innerText = "👁️"; // Show (open eye)
     } else {
         input.type = "password";
-        btn.innerText = "👁️"; 
+        btn.innerText = "🚫"; // Hide (slash/cancel)
     }
 }
 
