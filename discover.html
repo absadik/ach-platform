@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover - ACH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { navy: '#0A192F', electric: '#007BFF', gold: '#FFD700' } } } }
+    </script>
+</head>
+<body class="bg-navy text-white font-sans min-h-screen pb-20">
+
+    <!-- Top Header -->
+    <header class="p-4 bg-navy sticky top-0 z-40 border-b border-gray-700">
+        <div class="flex justify-between items-center mb-3">
+            <h1 class="text-xl font-bold text-gold">Discover</h1>
+            <button onclick="window.location.href='dashboard.html'" class="text-sm text-electric font-bold">← Back</button>
+        </div>
+        
+        <!-- Search Bar -->
+        <div class="relative">
+            <input type="text" placeholder="Search creators, media, campaigns..." class="w-full bg-gray-800 border border-gray-600 rounded-full py-3 px-5 text-white focus:outline-none focus:border-electric">
+            <button class="absolute right-2 top-2 bg-electric text-white rounded-full w-8 h-8 flex items-center justify-center">🔍</button>
+        </div>
+        
+        <!-- Tabs (Horizontal Scroll) -->
+        <div class="flex gap-2 mt-4 overflow-x-auto text-sm hide-scrollbar pb-1">
+            <button class="bg-electric text-white px-4 py-1.5 rounded-full font-semibold whitespace-nowrap">Creators</button>
+            <button class="bg-gray-800 border border-gray-600 text-gray-300 px-4 py-1.5 rounded-full whitespace-nowrap">Talent</button>
+            <button class="bg-gray-800 border border-gray-600 text-gray-300 px-4 py-1.5 rounded-full whitespace-nowrap">Media</button>
+            <button class="bg-gray-800 border border-gray-600 text-gray-300 px-4 py-1.5 rounded-full whitespace-nowrap">Campaigns</button>
+        </div>
+    </header>
+
+    <main class="p-4 space-y-4 max-w-2xl mx-auto">
+        
+        <!-- Filters -->
+        <div class="flex gap-2 overflow-x-auto text-xs hide-scrollbar pb-2">
+            <button class="bg-gray-900 border border-gray-600 px-3 py-1.5 rounded-md flex items-center gap-1 whitespace-nowrap">📍 Nigeria ▼</button>
+            <button class="bg-gray-900 border border-gray-600 px-3 py-1.5 rounded-md flex items-center gap-1 whitespace-nowrap">💰 Price ▼</button>
+            <button class="bg-gray-900 border border-gray-600 px-3 py-1.5 rounded-md flex items-center gap-1 whitespace-nowrap">✅ Verified Only</button>
+        </div>
+
+        <!-- RESULTS LISTING -->
+        <div class="space-y-4">
+
+            <!-- Result 1: Creator -->
+            <div class="bg-gray-800 rounded-xl p-4 border border-gray-700">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-xl font-bold">M</div>
+                        <div>
+                            <h3 class="font-bold text-white flex items-center gap-1">
+                                Mark Okafor 
+                                <span class="text-[10px] bg-blue-500/20 text-electric px-1.5 py-0.5 rounded border border-electric">Verified ✅</span>
+                            </h3>
+                            <p class="text-xs text-gray-400">TikTok Creator • Lagos, Nigeria</p>
+                        </div>
+                    </div>
+                    <button onclick="alert('Invitation sent to Mark Okafor!')" class="bg-electric text-white text-xs font-bold px-3 py-1.5 rounded-md">Invite</button>
+                </div>
+                
+                <div class="flex gap-2 mt-3 text-[10px]">
+                    <span class="bg-gray-900 text-gray-300 px-2 py-1 rounded">Comedy</span>
+                    <span class="bg-gray-900 text-gray-300 px-2 py-1 rounded">Music</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 mt-4 bg-gray-900 p-2 rounded-lg">
+                    <div>
+                        <p class="text-[10px] text-gray-500">Followers (Self-Reported)</p>
+                        <p class="text-sm font-bold text-white">45.2K</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-gray-500">Starting Price</p>
+                        <p class="text-sm font-bold text-gold">$150 / post</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result 2: Media Organisation -->
+            <div class="bg-gray-800 rounded-xl p-4 border border-gray-700">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-xl font-bold text-navy">R</div>
+                        <div>
+                            <h3 class="font-bold text-white flex items-center gap-1">
+                                Cool FM Lagos
+                                <span class="text-[10px] bg-gold/20 text-gold px-1.5 py-0.5 rounded border border-gold">Media Partner 🤝</span>
+                            </h3>
+                            <p class="text-xs text-gray-400">Radio Station • 95.1 FM</p>
+                        </div>
+                    </div>
+                    <button onclick="alert('Viewing Radio Slots!')" class="bg-gray-700 text-white text-xs font-bold px-3 py-1.5 rounded-md border border-gray-600">View Slots</button>
+                </div>
+                
+                <div class="mt-3 bg-gray-900 p-3 rounded-lg border border-gray-700">
+                    <p class="text-xs text-gold font-semibold mb-1">Available Inventory:</p>
+                    <p class="text-sm text-gray-300">Morning Drive Show (30s Ad Spot)</p>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-xs text-gray-500">Tomorrow, 8:00 AM</p>
+                        <p class="text-sm font-bold text-white">$50</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result 3: Campaign -->
+            <div class="bg-gray-800 rounded-xl p-4 border border-gray-700">
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <h3 class="font-bold text-white">Abtech Product Launch</h3>
+                        <p class="text-xs text-gray-400">Posted by Abtech Ltd • 2 days ago</p>
+                    </div>
+                    <span class="bg-green-500/20 text-green-400 text-[10px] font-bold px-2 py-1 rounded border border-green-500">Open</span>
+                </div>
+                <p class="text-sm text-gray-300 mb-3">Looking for 6 TikTok creators to review our new software.</p>
+                <div class="flex justify-between items-center bg-gray-900 p-3 rounded-lg">
+                    <div>
+                        <p class="text-[10px] text-gray-500">Budget per Creator</p>
+                        <p class="text-sm font-bold text-gold">$200</p>
+                    </div>
+                    <button onclick="alert('Application submitted successfully!')" class="bg-electric text-white text-xs font-bold px-4 py-2 rounded-md">Apply Now</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Bottom Nav -->
+    <nav class="fixed bottom-0 w-full bg-gray-800 border-t border-gray-700 flex justify-around items-center pt-2 pb-4 z-50">
+        <button onclick="window.location.href='dashboard.html'" class="text-gray-400 flex flex-col items-center">
+            <span class="text-xl">🏠</span>
+            <span class="text-[10px] mt-1">Overview</span>
+        </button>
+        <button class="text-electric flex flex-col items-center">
+            <span class="text-xl">🔍</span>
+            <span class="text-[10px] mt-1 font-bold">Discover</span>
+        </button>
+        <button onclick="alert('Create Campaign coming soon!')" class="bg-electric w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-lg -mt-8 border-4 border-navy">+</button>
+        <button onclick="alert('Messages coming soon!')" class="text-gray-400 flex flex-col items-center">
+            <span class="text-xl">💬</span>
+            <span class="text-[10px] mt-1">Messages</span>
+        </button>
+        <button onclick="window.location.href='dashboard.html'" class="text-gray-400 flex flex-col items-center">
+            <span class="text-xl">☰</span>
+            <span class="text-[10px] mt-1">More</span>
+        </button>
+    </nav>
+
+</body>
+              </html>
