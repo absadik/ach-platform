@@ -74,9 +74,9 @@ function toggleTheme() {
     document.body.classList.toggle('light-mode');
     const btn = document.getElementById('theme-btn');
     if (document.body.classList.contains('light-mode')) {
-        btn.innerText = "🌙"; // Switch back to dark
+        btn.innerText = "🌙"; // Show moon to go back to dark
     } else {
-        btn.innerText = "☀️"; // Switch to light
+        btn.innerText = "☀️"; // Show sun to go to light
     }
 }
 
@@ -169,7 +169,6 @@ function changeLanguage(lang) {
         document.getElementById('lbl-terms').innerHTML = `${t.agreeText} <a href="#" onclick="showPage('terms')" class="text-gold underline">${t.termsLink}</a> ${t.andText} <a href="#" onclick="showPage('terms')" class="text-gold underline">${t.privacyLink}</a>.`;
     }
 
-    // Refresh password meter text if inputs are not empty
     checkPasswordStrength();
     if(document.getElementById('ph-confirm').value.length > 0) checkPasswordMatch();
 
