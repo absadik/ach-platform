@@ -8,88 +8,102 @@ const translations = {
         phName: "Enter your name", phEmail: "you@example.com", phPhone: "800 000 0000", phPassword: "Create a password", phConfirm: "Repeat password",
         termsTitle: "Terms of Service & Privacy",
         termsContent: "1. Registration is free. 2. ACH charges a 10% commission on successful bookings. 3. We do not hold your funds directly; all payments are processed via licensed providers (e.g., Paystack). 4. Users must respect each other. 5. ACH is not responsible for off-platform transactions. 6. Your data is safe with us and will never be sold.",
-        agreeText: "I agree to the", termsLink: "Terms of Service", andText: "and", privacyLink: "Privacy Policy"
+        agreeText: "I agree to the", termsLink: "Terms of Service", andText: "and", privacyLink: "Privacy Policy",
+        reqLength: "At least 8 characters", reqNumber: "At least 1 number", reqUpper: "At least 1 uppercase letter",
+        matchSuccess: "✅ Passwords Match", matchFail: "❌ Passwords do not match"
     },
     ha: {
         navLogin: "Shiga", navSignup: "Yi Rajista", formTitle: "Shiga ACH", lblRole: "Ina yin rajista a matsayin:", lblName: "Cikakken Suna", lblEmail: "Imel", lblPhone: "Lambar Waya", lblCountry: "Ƙasa", lblPassword: "Kalmar Sirri", lblConfirm: "Tabbatar da Kalmar Sirri", btnSubmit: "Ƙirƙiri Asusu", otpTitle: "Tabbatar da Asusu", btnVerify: "Je Shiga", loginTitle: "Shiga ACH", btnLogin: "Shiga",
         phName: "Shigar da sunanka", phEmail: "imel@misali.com", phPhone: "800 000 0000", phPassword: "Ƙirƙiri kalmar sirri", phConfirm: "Maimaita kalmar sirri",
         termsTitle: "Sharuɗɗa & Sirri",
         termsContent: "1. Rajista kyauta ce. 2. ACH tana karɓar kashi 10% na kowace yarjejeniya. 3. Ba mu riƙe kuɗin ku kai tsaye ba; ana biya ta hanyar kamfanoni masu lasisi. 4. Masu amfani dole su girmama juna. 5. ACH ba ta da alhakin cinikin da aka yi a wajen App. 6. Bayananku suna da tsaro.",
-        agreeText: "Na yarda da", termsLink: "Sharuɗɗan Sabis", andText: "da", privacyLink: "Manufar Sirri"
+        agreeText: "Na yarda da", termsLink: "Sharuɗɗan Sabis", andText: "da", privacyLink: "Manufar Sirri",
+        reqLength: "Akalla haruffa 8", reqNumber: "Akalla lamba 1", reqUpper: "Akalla babban harafi 1",
+        matchSuccess: "✅ Sun daidaita", matchFail: "❌ Ba su daidaita ba"
     },
     yo: {
         navLogin: "Wọlé", navSignup: "Forúkọ sílẹ̀", formTitle: "Darapọ̀ mọ́ ACH", lblRole: "Mo forúkọ sílẹ̀ gẹ́gẹ́ bí:", lblName: "Orúkọ Kíkún", lblEmail: "Íméèlì", lblPhone: "Nọ́mbà Fọ́nù", lblCountry: "Orílẹ̀-èdè", lblPassword: "Ọ̀rọ̀ Ìpamọ́", lblConfirm: "Jẹ́rìí Ọ̀rọ̀ Ìpamọ́", btnSubmit: "Ṣẹ̀dá Àkọsílẹ̀", otpTitle: "Rí Dájú Àkọsílẹ̀", btnVerify: "Lọ Wọlé", loginTitle: "Wọlé sí ACH", btnLogin: "Wọlé",
         phName: "Tẹ orúkọ rẹ", phEmail: "you@example.com", phPhone: "800 000 0000", phPassword: "Ṣẹ̀dá ọ̀rọ̀ ìpamọ́", phConfirm: "Tún ọ̀rọ̀ ìpamọ́ kọ",
         termsTitle: "Àwọn Ìlànà & Àṣírí",
         termsContent: "1. Ìforúkọsílẹ̀ jẹ́ ọ̀fẹ́. 2. ACH ń gba ìdá 10% lórí àwọn ìfìpamọ́. 3. A kò gba owó rẹ mọ́ tààrà; a ń gba owó nípasẹ̀ àwọn olùpèsè ìwé àṣẹ. 4. Àwọn olùmúlò gbọdọ̀ bọ̀wọ̀ fún ara wọn. 5. ACH kò ní ojúṣe fún àwọn ìdúnàádúrà tí kò wà lórí ẹ̀rọ. 6. Àwọn dátà rẹ wà ní ààbò.",
-        agreeText: "Mo gbà pẹ̀lú", termsLink: "Àwọn Ìlànà Iṣẹ́", andText: "àti", privacyLink: "Ìlànà Àṣírí"
+        agreeText: "Mo gbà pẹ̀lú", termsLink: "Àwọn Ìlànà Iṣẹ́", andText: "àti", privacyLink: "Ìlànà Àṣírí",
+        reqLength: "Ó kéré tán lẹ́tà 8", reqNumber: "Ó kéré tán nọ́mbà 1", reqUpper: "Ó kéré tán lẹ́tà ńlá 1",
+        matchSuccess: "✅ Wọ́n bára wọn", matchFail: "❌ Wọn kò bára wọn"
     },
     fr: {
         navLogin: "Connexion", navSignup: "S'inscrire", formTitle: "Rejoindre ACH", lblRole: "Je m'inscris en tant que :", lblName: "Nom / Entreprise", lblEmail: "Email", lblPhone: "Téléphone", lblCountry: "Pays", lblPassword: "Mot de passe", lblConfirm: "Confirmer", btnSubmit: "Créer un compte", otpTitle: "Vérifier", btnVerify: "Aller à la connexion", loginTitle: "Connexion", btnLogin: "Connexion",
         phName: "Entrez votre nom", phEmail: "vous@exemple.com", phPhone: "800 000 0000", phPassword: "Créer un mot de passe", phConfirm: "Répéter",
         termsTitle: "Conditions & Confidentialité",
         termsContent: "1. L'inscription est gratuite. 2. ACH prend une commission de 10% sur les réservations. 3. Nous ne détenons pas vos fonds. 4. Respectez les autres utilisateurs. 5. ACH n'est pas responsable des transactions hors plateforme. 6. Vos données sont en sécurité.",
-        agreeText: "J'accepte les", termsLink: "Conditions d'Utilisation", andText: "et la", privacyLink: "Politique de Confidentialité"
+        agreeText: "J'accepte les", termsLink: "Conditions d'Utilisation", andText: "et la", privacyLink: "Politique de Confidentialité",
+        reqLength: "Au moins 8 caractères", reqNumber: "Au moins 1 chiffre", reqUpper: "Au moins 1 majuscule",
+        matchSuccess: "✅ Les mots de passe correspondent", matchFail: "❌ Les mots de passe ne correspondent pas"
     },
     ar: {
         navLogin: "دخول", navSignup: "اشترك", formTitle: "انضم إلى ACH", lblRole: "أنا أسجل كـ:", lblName: "الاسم / الشركة", lblEmail: "البريد", lblPhone: "الهاتف", lblCountry: "الدولة", lblPassword: "كلمة المرور", lblConfirm: "تأكيد", btnSubmit: "إنشاء حساب", otpTitle: "تحقق", btnVerify: "الذهاب للدخول", loginTitle: "تسجيل الدخول", btnLogin: "دخول",
         phName: "أدخل اسمك", phEmail: "you@example.com", phPhone: "800 000 0000", phPassword: "إنشاء كلمة مرور", phConfirm: "إعادة كلمة المرور",
         termsTitle: "الشروط والخصوصية",
         termsContent: "1. التسجيل مجاني. 2. تتقاضى ACH عمولة 10٪ على الحجوزات. 3. نحن لا نحتفظ بأموالك. 4. احترم الآخرين. 5. ACH ليست مسؤولة عن المعاملات خارج المنصة. 6. بياناتك آمنة.",
-        agreeText: "أوافق على", termsLink: "شروط الخدمة", andText: "و", privacyLink: "سياسة الخصوصية"
+        agreeText: "أوافق على", termsLink: "شروط الخدمة", andText: "و", privacyLink: "سياسة الخصوصية",
+        reqLength: "8 أحرف على الأقل", reqNumber: "رقم واحد على الأقل", reqUpper: "حرف كبير واحد على الأقل",
+        matchSuccess: "✅ كلمات المرور متطابقة", matchFail: "❌ كلمات المرور غير متطابقة"
     },
     es: {
         navLogin: "Iniciar sesión", navSignup: "Registrarse", formTitle: "Unirse a ACH", lblRole: "Me registro como:", lblName: "Nombre / Empresa", lblEmail: "Correo", lblPhone: "Teléfono", lblCountry: "País", lblPassword: "Contraseña", lblConfirm: "Confirmar", btnSubmit: "Crear Cuenta", otpTitle: "Verificar", btnVerify: "Ir a Iniciar Sesión", loginTitle: "Iniciar Sesión", btnLogin: "Entrar",
         phName: "Ingresa tu nombre", phEmail: "tu@ejemplo.com", phPhone: "800 000 0000", phPassword: "Crea una contraseña", phConfirm: "Repite",
         termsTitle: "Términos y Privacidad",
         termsContent: "1. El registro es gratuito. 2. ACH cobra una comisión del 10%. 3. No retenemos sus fondos. 4. Respete a los demás. 5. ACH no es responsable de transacciones externas. 6. Sus datos están seguros.",
-        agreeText: "Acepto los", termsLink: "Términos de Servicio", andText: "y la", privacyLink: "Política de Privacidad"
+        agreeText: "Acepto los", termsLink: "Términos de Servicio", andText: "y la", privacyLink: "Política de Privacidad",
+        reqLength: "Al menos 8 caracteres", reqNumber: "Al menos 1 número", reqUpper: "Al menos 1 mayúscula",
+        matchSuccess: "✅ Las contraseñas coinciden", matchFail: "❌ Las contraseñas no coinciden"
     },
     zh: {
         navLogin: "登录", navSignup: "注册", formTitle: "加入 ACH", lblRole: "我注册为:", lblName: "全名 / 公司", lblEmail: "电子邮件", lblPhone: "电话", lblCountry: "国家", lblPassword: "密码", lblConfirm: "确认密码", btnSubmit: "创建账户", otpTitle: "验证账户", btnVerify: "去登录", loginTitle: "登录 ACH", btnLogin: "登录",
         phName: "输入您的名字", phEmail: "you@example.com", phPhone: "800 000 0000", phPassword: "创建密码", phConfirm: "再次输入密码",
         termsTitle: "条款与隐私",
         termsContent: "1. 注册免费。2. ACH 收取 10% 的佣金。3. 我们不直接持有您的资金。4. 尊重他人。5. ACH 不对平台外交易负责。6. 您的数据是安全的。",
-        agreeText: "我同意", termsLink: "服务条款", andText: "和", privacyLink: "隐私政策"
+        agreeText: "我同意", termsLink: "服务条款", andText: "和", privacyLink: "隐私政策",
+        reqLength: "至少8个字符", reqNumber: "至少1个数字", reqUpper: "至少1个大写字母",
+        matchSuccess: "✅ 密码匹配", matchFail: "❌ 密码不匹配"
     }
 };
 
-// --- THEME TOGGLE (NIGHT MODE) ---
+let currentLang = 'en';
+
 function toggleTheme() {
-    document.body.classList.toggle('dark-mode');
+    document.body.classList.toggle('light-mode');
     const btn = document.getElementById('theme-btn');
-    if (document.body.classList.contains('dark-mode')) {
-        btn.innerText = "☀️"; // Sun icon for Light mode
+    if (document.body.classList.contains('light-mode')) {
+        btn.innerText = "🌙"; // Switch back to dark
     } else {
-        btn.innerText = "🌙"; // Moon icon for Dark mode
+        btn.innerText = "☀️"; // Switch to light
     }
 }
 
-// --- PASSWORD STRENGTH LOGIC ---
 let isPasswordSecure = false;
 let isPasswordMatched = false;
 
 function checkPasswordStrength() {
     const pass = document.getElementById('ph-password').value;
+    const t = translations[currentLang];
     
     const hasLength = pass.length >= 8;
     const hasNumber = /\d/.test(pass);
     const hasUpper = /[A-Z]/.test(pass);
 
-    // Update UI checkmarks
-    document.getElementById('req-length').innerHTML = hasLength ? "✅ <span class='text-green-500'>At least 8 characters</span>" : "❌ At least 8 characters";
-    document.getElementById('req-number').innerHTML = hasNumber ? "✅ <span class='text-green-500'>At least 1 number</span>" : "❌ At least 1 number";
-    document.getElementById('req-upper').innerHTML = hasUpper ? "✅ <span class='text-green-500'>At least 1 uppercase letter</span>" : "❌ At least 1 uppercase letter";
+    document.getElementById('req-length').innerHTML = hasLength ? `✅ <span class='text-green-500'>${t.reqLength}</span>` : `❌ ${t.reqLength}`;
+    document.getElementById('req-number').innerHTML = hasNumber ? `✅ <span class='text-green-500'>${t.reqNumber}</span>` : `❌ ${t.reqNumber}`;
+    document.getElementById('req-upper').innerHTML = hasUpper ? `✅ <span class='text-green-500'>${t.reqUpper}</span>` : `❌ ${t.reqUpper}`;
 
     isPasswordSecure = hasLength && hasNumber && hasUpper;
     checkFormStatus();
 }
 
-// --- PASSWORD MATCH LOGIC ---
 function checkPasswordMatch() {
     const pass = document.getElementById('ph-password').value;
     const confirm = document.getElementById('ph-confirm').value;
     const msg = document.getElementById('match-msg');
+    const t = translations[currentLang];
 
     if (confirm.length === 0) {
         msg.classList.add('hidden');
@@ -98,19 +112,18 @@ function checkPasswordMatch() {
         msg.classList.remove('hidden');
         msg.classList.add('text-green-500');
         msg.classList.remove('text-red-500');
-        msg.innerText = "✅ Passwords Match";
+        msg.innerText = t.matchSuccess;
         isPasswordMatched = true;
     } else {
         msg.classList.remove('hidden');
         msg.classList.add('text-red-500');
         msg.classList.remove('text-green-500');
-        msg.innerText = "❌ Passwords do not match";
+        msg.innerText = t.matchFail;
         isPasswordMatched = false;
     }
     checkFormStatus();
 }
 
-// --- ENABLE/DISABLE SUBMIT BUTTON ---
 function checkFormStatus() {
     const btn = document.getElementById('btn-submit');
     if (isPasswordSecure && isPasswordMatched) {
@@ -123,6 +136,7 @@ function checkFormStatus() {
 }
 
 function changeLanguage(lang) {
+    currentLang = lang;
     const t = translations[lang];
     if(!t) return;
     
@@ -136,11 +150,7 @@ function changeLanguage(lang) {
     if(document.getElementById('lbl-country')) document.getElementById('lbl-country').innerText = t.lblCountry;
     if(document.getElementById('lbl-password')) document.getElementById('lbl-password').innerText = t.lblPassword;
     if(document.getElementById('lbl-confirm')) document.getElementById('lbl-confirm').innerText = t.lblConfirm;
-    if(document.getElementById('btn-submit') && document.getElementById('btn-submit').disabled) {
-        document.getElementById('btn-submit').innerText = t.btnSubmit;
-    } else if (document.getElementById('btn-submit')) {
-        document.getElementById('btn-submit').innerText = t.btnSubmit;
-    }
+    if(document.getElementById('btn-submit')) document.getElementById('btn-submit').innerText = t.btnSubmit;
     if(document.getElementById('otp-title')) document.getElementById('otp-title').innerText = t.otpTitle;
     if(document.getElementById('btn-verify')) document.getElementById('btn-verify').innerText = t.btnVerify;
     if(document.getElementById('login-title')) document.getElementById('login-title').innerText = t.loginTitle;
@@ -158,6 +168,10 @@ function changeLanguage(lang) {
     if(document.getElementById('lbl-terms')) {
         document.getElementById('lbl-terms').innerHTML = `${t.agreeText} <a href="#" onclick="showPage('terms')" class="text-gold underline">${t.termsLink}</a> ${t.andText} <a href="#" onclick="showPage('terms')" class="text-gold underline">${t.privacyLink}</a>.`;
     }
+
+    // Refresh password meter text if inputs are not empty
+    checkPasswordStrength();
+    if(document.getElementById('ph-confirm').value.length > 0) checkPasswordMatch();
 
     if (lang === 'ar') { document.body.setAttribute('dir', 'rtl'); } else { document.body.removeAttribute('dir'); }
 }
@@ -188,7 +202,6 @@ function togglePassword(inputId, btnId) {
 async function registerUser(event) {
     event.preventDefault(); 
     
-    // Double check before submitting to Supabase
     if (!isPasswordSecure || !isPasswordMatched) {
         alert("Please ensure your password meets all requirements and matches.");
         return;
@@ -227,4 +240,4 @@ async function registerUser(event) {
 
 async function loginUser() {
     window.location.href = 'dashboard.html';
-    }
+        }
