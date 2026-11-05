@@ -11,7 +11,18 @@
     </script>
     <style>
         body { transition: background-color 0.3s, color 0.3s; }
-        .dark-mode { background-color: #000000 !important; }
+        
+        /* TRUE LIGHT MODE OVERRIDES */
+        body.light-mode { background-color: #F3F4F6 !important; color: #111827 !important; }
+        body.light-mode .bg-gray-800 { background-color: #FFFFFF !important; border-color: #D1D5DB !important; }
+        body.light-mode .bg-gray-900 { background-color: #F9FAFB !important; border-color: #D1D5DB !important; }
+        body.light-mode .text-white { color: #111827 !important; }
+        body.light-mode .text-gray-300 { color: #4B5563 !important; }
+        body.light-mode .text-gray-400 { color: #6B7280 !important; }
+        body.light-mode .text-gold { color: #B45309 !important; } /* Darker gold for contrast */
+        body.light-mode .border-gray-700 { border-color: #D1D5DB !important; }
+        body.light-mode .border-gray-600 { border-color: #9CA3AF !important; }
+        body.light-mode .bg-navy { background-color: #F3F4F6 !important; }
     </style>
 </head>
 <body class="bg-navy text-white font-sans min-h-screen flex flex-col">
@@ -19,14 +30,13 @@
     <header class="p-4 flex justify-between items-center border-b border-gray-700">
         <h1 class="text-lg font-bold text-gold tracking-wider cursor-pointer" onclick="showPage('home')" id="main-header">ABSADIK CREATOR HUB</h1>
         <div class="flex gap-2 items-center">
-            <!-- NIGHT MODE TOGGLE -->
-            <button onclick="toggleTheme()" id="theme-btn" class="text-xl px-2">🌙</button>
+            <!-- NIGHT MODE TOGGLE FIXED -->
+            <button type="button" onclick="toggleTheme()" id="theme-btn" class="text-2xl px-2">☀️</button>
             <button onclick="showPage('login')" class="text-white px-3 py-1 rounded-md text-sm border border-gray-600" id="nav-login">Login</button>
             <button onclick="showPage('register')" class="bg-electric text-white px-3 py-1 rounded-md font-semibold text-sm" id="nav-signup">Sign Up</button>
         </div>
     </header>
 
-    <!-- 1. HOMEPAGE -->
     <div id="page-home" class="flex-grow flex flex-col">
         <main class="flex-grow flex flex-col items-center justify-center text-center px-4 py-16">
             <h2 class="text-4xl font-extrabold mb-4 leading-tight">
@@ -37,7 +47,6 @@
         </main>
     </div>
 
-    <!-- 2. REGISTRATION -->
     <div id="page-register" class="hidden flex-grow flex items-center justify-center p-4 py-10">
         <div class="bg-gray-800 p-6 rounded-xl shadow-2xl w-full max-w-lg border border-gray-700">
             <div class="flex justify-between items-center mb-4">
@@ -181,7 +190,6 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-password">Password</label>
                     <div class="relative">
-                        <!-- oninput triggers the strength meter -->
                         <input type="password" id="ph-password" oninput="checkPasswordStrength()" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white pr-10" placeholder="Create a password" required>
                         <button type="button" id="eye-btn-1" onclick="togglePassword('ph-password', 'eye-btn-1')" class="absolute right-3 top-2.5 text-gray-400 font-bold">🚫</button>
                     </div>
@@ -196,7 +204,6 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-confirm">Confirm Password</label>
                     <div class="relative">
-                        <!-- oninput triggers the match check -->
                         <input type="password" id="ph-confirm" oninput="checkPasswordMatch()" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white pr-10" placeholder="Repeat password" required>
                         <button type="button" id="eye-btn-2" onclick="togglePassword('ph-confirm', 'eye-btn-2')" class="absolute right-3 top-2.5 text-gray-400 font-bold">🚫</button>
                     </div>
@@ -215,33 +222,30 @@
         </div>
     </div>
 
-    <!-- 3. TERMS & PRIVACY PAGE -->
     <div id="page-terms" class="hidden flex-grow flex items-center justify-center p-4 py-10">
         <div class="bg-gray-800 p-6 rounded-xl shadow-2xl w-full max-w-lg border border-gray-700">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-2xl font-bold text-gold" id="terms-page-title">Terms & Privacy</h2>
-                <button onclick="showPage('register')" class="text-electric font-bold text-sm">← Back</button>
+                <button type="button" onclick="showPage('register')" class="text-electric font-bold text-sm">← Back</button>
             </div>
             <div class="text-sm text-gray-300 space-y-4 h-96 overflow-y-auto pr-2" id="terms-page-content"></div>
         </div>
     </div>
 
-    <!-- 4. OTP SCREEN -->
     <div id="page-otp" class="hidden flex-grow flex items-center justify-center p-4">
         <div class="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-md border border-gray-700 text-center">
             <h2 class="text-2xl font-bold text-gold mb-2" id="otp-title">Verify Account</h2>
             <p class="text-sm text-gray-400 mb-4">Check your email for the verification link.</p>
-            <button onclick="showPage('login')" class="w-full bg-gold text-navy font-bold py-3 rounded-md mt-4" id="btn-verify">Go to Login</button>
+            <button type="button" onclick="showPage('login')" class="w-full bg-gold text-navy font-bold py-3 rounded-md mt-4" id="btn-verify">Go to Login</button>
         </div>
     </div>
 
-    <!-- 5. LOGIN SCREEN -->
     <div id="page-login" class="hidden flex-grow flex items-center justify-center p-4">
         <div class="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-md border border-gray-700 text-center">
             <h2 class="text-2xl font-bold text-gold mb-6" id="login-title">Login to ACH</h2>
             <input type="email" id="login-email" class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-md mb-4" placeholder="Email Address">
             <input type="password" id="login-password" class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-md mb-4" placeholder="Password">
-            <button onclick="loginUser()" class="w-full bg-electric font-bold py-3 rounded-md mb-4" id="btn-login">Login</button>
+            <button type="button" onclick="loginUser()" class="w-full bg-electric font-bold py-3 rounded-md mb-4" id="btn-login">Login</button>
         </div>
     </div>
 
