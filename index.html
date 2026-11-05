@@ -12,7 +12,6 @@
 </head>
 <body class="bg-navy text-white font-sans min-h-screen flex flex-col">
 
-    <!-- HEADER -->
     <header class="p-4 flex justify-between items-center border-b border-gray-700">
         <h1 class="text-lg font-bold text-gold tracking-wider cursor-pointer" onclick="showPage('home')" id="main-header">ABSADIK CREATOR HUB</h1>
         <div class="flex gap-2">
@@ -21,7 +20,6 @@
         </div>
     </header>
 
-    <!-- 1. HOMEPAGE -->
     <div id="page-home" class="flex-grow flex flex-col">
         <main class="flex-grow flex flex-col items-center justify-center text-center px-4 py-16">
             <h2 class="text-4xl font-extrabold mb-4 leading-tight">
@@ -32,7 +30,6 @@
         </main>
     </div>
 
-    <!-- 2. REGISTRATION -->
     <div id="page-register" class="hidden flex-grow flex items-center justify-center p-4 py-10">
         <div class="bg-gray-800 p-6 rounded-xl shadow-2xl w-full max-w-lg border border-gray-700">
             <div class="flex justify-between items-center mb-4">
@@ -53,44 +50,78 @@
                     <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-name">Full Name / Company</label>
                     <input type="text" id="ph-name" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white" placeholder="Enter your name" required>
                 </div>
+
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-email">Email</label>
                         <input type="email" id="ph-email" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white" placeholder="you@example.com" required>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-phone">Phone</label>
-                        <input type="tel" id="ph-phone" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white" placeholder="+234...">
+                        <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-country">Country</label>
+                        <select id="user-country" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white">
+                            <option value="NG">Nigeria</option>
+                            <option value="GH">Ghana</option>
+                            <option value="KE">Kenya</option>
+                            <option value="ZA">South Africa</option>
+                            <option value="US">United States</option>
+                            <option value="GB">United Kingdom</option>
+                        </select>
                     </div>
                 </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-phone">Phone Number</label>
+                    <div class="flex gap-2">
+                        <select id="phone-code" class="w-1/3 px-2 py-2 bg-gray-900 border border-gray-600 rounded-md text-white">
+                            <option value="+234">+234 (NG)</option>
+                            <option value="+233">+233 (GH)</option>
+                            <option value="+254">+254 (KE)</option>
+                            <option value="+27">+27 (ZA)</option>
+                            <option value="+1">+1 (US)</option>
+                            <option value="+44">+44 (UK)</option>
+                        </select>
+                        <input type="tel" id="ph-phone" class="w-2/3 px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white" placeholder="800 000 0000">
+                    </div>
+                </div>
+
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-password">Password</label>
-                    <input type="password" id="ph-login-pass" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white" placeholder="Create a password" required>
+                    <div class="relative">
+                        <input type="password" id="ph-password" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white pr-10" placeholder="Create a password" required>
+                        <button type="button" onclick="togglePassword('ph-password')" class="absolute right-3 top-2.5 text-gray-400">👁️</button>
+                    </div>
                 </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-confirm">Confirm Password</label>
+                    <div class="relative">
+                        <input type="password" id="ph-confirm" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white pr-10" placeholder="Repeat password" required>
+                        <button type="button" onclick="togglePassword('ph-confirm')" class="absolute right-3 top-2.5 text-gray-400">👁️</button>
+                    </div>
+                </div>
+
                 <button type="submit" class="w-full bg-electric font-bold py-3 rounded-md mt-4" id="btn-submit">Create Account & Verify</button>
             </form>
         </div>
     </div>
 
-    <!-- 3. OTP SCREEN -->
     <div id="page-otp" class="hidden flex-grow flex items-center justify-center p-4">
         <div class="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-md border border-gray-700 text-center">
             <h2 class="text-2xl font-bold text-gold mb-2" id="otp-title">Verify Account</h2>
-            <p class="text-sm text-gray-400 mb-4">Check your email for the OTP code.</p>
-            <button onclick="showPage('login')" class="w-full bg-gold text-navy font-bold py-3 rounded-md mt-4" id="btn-verify">Verify & Login</button>
+            <p class="text-sm text-gray-400 mb-4">Check your email for the verification link.</p>
+            <button onclick="showPage('login')" class="w-full bg-gold text-navy font-bold py-3 rounded-md mt-4" id="btn-verify">Go to Login</button>
         </div>
     </div>
 
-    <!-- 4. LOGIN SCREEN -->
     <div id="page-login" class="hidden flex-grow flex items-center justify-center p-4">
         <div class="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-md border border-gray-700 text-center">
             <h2 class="text-2xl font-bold text-gold mb-6" id="login-title">Login to ACH</h2>
-            <input type="email" id="ph-login-email" class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-md mb-4" placeholder="Email Address">
-            <input type="password" id="ph-login-pass-login" class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-md mb-4" placeholder="Password">
+            <input type="email" class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-md mb-4" placeholder="Email Address">
+            <input type="password" class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-md mb-4" placeholder="Password">
             <button onclick="window.location.href='dashboard.html'" class="w-full bg-electric font-bold py-3 rounded-md mb-4" id="btn-login">Login</button>
         </div>
     </div>
 
     <script src="app.js"></script>
 </body>
-                    </html>
+                        </html>
