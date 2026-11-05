@@ -9,12 +9,18 @@
     <script>
         tailwind.config = { theme: { extend: { colors: { navy: '#0A192F', electric: '#007BFF', gold: '#FFD700' } } } }
     </script>
+    <style>
+        body { transition: background-color 0.3s, color 0.3s; }
+        .dark-mode { background-color: #000000 !important; }
+    </style>
 </head>
 <body class="bg-navy text-white font-sans min-h-screen flex flex-col">
 
     <header class="p-4 flex justify-between items-center border-b border-gray-700">
         <h1 class="text-lg font-bold text-gold tracking-wider cursor-pointer" onclick="showPage('home')" id="main-header">ABSADIK CREATOR HUB</h1>
-        <div class="flex gap-2">
+        <div class="flex gap-2 items-center">
+            <!-- NIGHT MODE TOGGLE -->
+            <button onclick="toggleTheme()" id="theme-btn" class="text-xl px-2">🌙</button>
             <button onclick="showPage('login')" class="text-white px-3 py-1 rounded-md text-sm border border-gray-600" id="nav-login">Login</button>
             <button onclick="showPage('register')" class="bg-electric text-white px-3 py-1 rounded-md font-semibold text-sm" id="nav-signup">Sign Up</button>
         </div>
@@ -175,18 +181,26 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-password">Password</label>
                     <div class="relative">
-                        <input type="password" id="ph-password" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white pr-10" placeholder="Create a password" required>
-                        <!-- FIXED: Eye icon shows a slash when hidden -->
+                        <!-- oninput triggers the strength meter -->
+                        <input type="password" id="ph-password" oninput="checkPasswordStrength()" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white pr-10" placeholder="Create a password" required>
                         <button type="button" id="eye-btn-1" onclick="togglePassword('ph-password', 'eye-btn-1')" class="absolute right-3 top-2.5 text-gray-400 font-bold">🚫</button>
+                    </div>
+                    <!-- PASSWORD STRENGTH METER -->
+                    <div class="mt-2 text-xs space-y-1 text-gray-500">
+                        <div id="req-length">❌ At least 8 characters</div>
+                        <div id="req-number">❌ At least 1 number</div>
+                        <div id="req-upper">❌ At least 1 uppercase letter</div>
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1" id="lbl-confirm">Confirm Password</label>
                     <div class="relative">
-                        <input type="password" id="ph-confirm" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white pr-10" placeholder="Repeat password" required>
+                        <!-- oninput triggers the match check -->
+                        <input type="password" id="ph-confirm" oninput="checkPasswordMatch()" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-md text-white pr-10" placeholder="Repeat password" required>
                         <button type="button" id="eye-btn-2" onclick="togglePassword('ph-confirm', 'eye-btn-2')" class="absolute right-3 top-2.5 text-gray-400 font-bold">🚫</button>
                     </div>
+                    <div id="match-msg" class="text-xs mt-1 hidden font-bold"></div>
                 </div>
 
                 <div class="flex items-start mt-2">
@@ -196,7 +210,7 @@
                     </label>
                 </div>
 
-                <button type="submit" class="w-full bg-electric font-bold py-3 rounded-md mt-4" id="btn-submit">Create Account & Verify</button>
+                <button type="submit" id="btn-submit" class="w-full bg-gray-600 text-gray-400 font-bold py-3 rounded-md mt-4 cursor-not-allowed transition" disabled>Create Account & Verify</button>
             </form>
         </div>
     </div>
@@ -206,18 +220,9 @@
         <div class="bg-gray-800 p-6 rounded-xl shadow-2xl w-full max-w-lg border border-gray-700">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-2xl font-bold text-gold" id="terms-page-title">Terms & Privacy</h2>
-                <!-- FIXED: Back button properly hides the page -->
                 <button onclick="showPage('register')" class="text-electric font-bold text-sm">← Back</button>
             </div>
-            <!-- FIXED: Added default content so the page is never blank -->
-            <div class="text-sm text-gray-300 space-y-4 h-96 overflow-y-auto pr-2" id="terms-page-content">
-                1. Registration is free. <br><br>
-                2. ACH charges a 10% commission on successful bookings. <br><br>
-                3. We do not hold your funds directly; all payments are processed via licensed providers (e.g., Paystack). <br><br>
-                4. Users must respect each other. <br><br>
-                5. ACH is not responsible for off-platform transactions. <br><br>
-                6. Your data is safe with us and will never be sold.
-            </div>
+            <div class="text-sm text-gray-300 space-y-4 h-96 overflow-y-auto pr-2" id="terms-page-content"></div>
         </div>
     </div>
 
@@ -242,4 +247,4 @@
 
     <script src="app.js"></script>
 </body>
-    </html>
+                                </html>
