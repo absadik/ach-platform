@@ -4,10 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creator Dashboard - ACH</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: { colors: { navy: '#0A192F', electric: '#007BFF', gold: '#FFD700' } } } }
     </script>
+    <style>
+        body { transition: background-color 0.3s, color 0.3s; }
+        /* STRONG LIGHT MODE FOR DASHBOARD */
+        body.light-mode { background-color: #F3F4F6 !important; color: #111827 !important; }
+        body.light-mode .bg-navy { background-color: #F3F4F6 !important; }
+        body.light-mode .bg-gray-800 { background-color: #FFFFFF !important; border-color: #E5E7EB !important; }
+        body.light-mode .bg-gray-900 { background-color: #F9FAFB !important; border-color: #D1D5DB !important; }
+        body.light-mode .text-white { color: #111827 !important; }
+        body.light-mode .text-gray-300 { color: #4B5563 !important; }
+        body.light-mode .text-gray-400 { color: #6B7280 !important; }
+        body.light-mode .text-gold { color: #B45309 !important; } 
+        body.light-mode .border-gray-700 { border-color: #E5E7EB !important; }
+        body.light-mode .border-gray-600 { border-color: #D1D5DB !important; }
+    </style>
 </head>
 <body class="bg-navy text-white font-sans min-h-screen pb-20 overflow-hidden">
 
@@ -15,97 +30,100 @@
     <header class="p-4 flex justify-between items-center border-b border-gray-700 sticky top-0 bg-navy z-40">
         <div>
             <p class="text-xs text-gray-400">Welcome back,</p>
-            <h1 class="text-lg font-bold text-white">Creator Name</h1>
+            <!-- REAL USER NAME LOADS HERE -->
+            <h1 class="text-lg font-bold text-white" id="dash-user-name">Loading...</h1>
             <div class="flex items-center gap-1 mt-1">
                 <span class="text-[10px] bg-yellow-500/20 text-gold px-2 py-0.5 rounded border border-gold">Verified ✅</span>
             </div>
         </div>
-        <div class="flex gap-3">
-            <button class="text-xs bg-gray-800 border border-gray-600 px-3 py-1 rounded-full text-electric">Switch Role</button>
-            <button class="text-xl relative">
+        <div class="flex gap-2 items-center">
+            <!-- THEME TOGGLE -->
+            <button type="button" onclick="toggleTheme()" id="theme-btn" class="text-2xl px-2 focus:outline-none">☀️</button>
+            <button type="button" onclick="alert('Switch Role feature coming soon!')" class="text-xs bg-gray-800 border border-gray-600 px-3 py-1 rounded-full text-electric">Switch Role</button>
+            <button type="button" onclick="alert('Notifications coming soon!')" class="text-xl relative">
                 🔔
                 <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
             </button>
         </div>
     </header>
-  <!-- Main Content Area (Overview) -->
-<main class="p-4 space-y-6 max-w-2xl mx-auto h-[calc(100vh-140px)] overflow-y-auto">
+
+    <!-- Main Content Area (Overview) -->
+    <main class="p-4 space-y-6 max-w-2xl mx-auto h-[calc(100vh-140px)] overflow-y-auto">
+        
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                <p class="text-xs text-gray-400">Profile Completion</p>
+                <div class="flex items-end gap-2 mt-1">
+                    <h3 class="text-xl font-bold text-gold">40%</h3>
+                </div>
+                <div class="w-full bg-gray-900 rounded-full h-1.5 mt-2">
+                    <div class="bg-gold h-1.5 rounded-full" style="width: 40%"></div>
+                </div>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                <p class="text-xs text-gray-400">Active Bookings</p>
+                <h3 class="text-xl font-bold text-white mt-1">0</h3>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="bg-electric/20 border border-electric p-4 rounded-xl">
+            <h3 class="text-electric font-bold mb-1">Finish your profile</h3>
+            <p class="text-sm text-gray-300 mb-3">Add your intro video and portfolio to get noticed by companies.</p>
+            <button type="button" onclick="alert('Profile Edit page coming in Phase 2!')" class="bg-electric text-white px-4 py-2 rounded-md text-sm font-semibold">Complete Now</button>
+        </div>
+
+        <!-- Recent Activity -->
+        <div>
+            <h3 class="text-md font-bold mb-3">Recent Activity</h3>
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 text-center">
+                <p class="text-gray-400 text-sm">You have no new invitations or applications yet.</p>
+                <button type="button" onclick="alert('Discovery page coming in Phase 2!')" class="mt-3 text-electric text-sm font-semibold">Find Campaigns →</button>
+            </div>
+        </div>
+
+        <!-- Payments & Transactions -->
+        <div class="bg-gray-800 rounded-xl p-4 border border-gray-700">
+            <h2 class="text-gold font-bold text-sm mb-3">Payments & Transactions</h2>
+            <div class="flex justify-between items-center border-b border-gray-700 pb-2 mb-2">
+                <span class="text-xs text-gray-400">Completed</span>
+                <span class="text-sm font-bold text-green-400">$0.00</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-400">Pending Escrow</span>
+                <span class="text-sm font-bold text-gray-400">$0.00</span>
+            </div>
+        </div>
+
+    </main>
+    <!-- BOTTOM NAVIGATION BAR -->
+<nav class="fixed bottom-0 w-full bg-gray-800 border-t border-gray-700 flex justify-around items-center pt-2 pb-4 z-50">
+    <button type="button" class="text-gold flex flex-col items-center">
+        <span class="text-xl">🏠</span>
+        <span class="text-[10px] mt-1 font-bold">Overview</span>
+    </button>
+    <button type="button" onclick="alert('Discovery page coming in Phase 2!')" class="text-gray-400 flex flex-col items-center">
+        <span class="text-xl">🔍</span>
+        <span class="text-[10px] mt-1">Discover</span>
+    </button>
     
-    <!-- Stats Grid -->
-    <div class="grid grid-cols-2 gap-4">
-        <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
-            <p class="text-xs text-gray-400">Profile Completion</p>
-            <div class="flex items-end gap-2 mt-1">
-                <h3 class="text-xl font-bold text-gold">40%</h3>
-            </div>
-            <div class="w-full bg-gray-900 rounded-full h-1.5 mt-2">
-                <div class="bg-gold h-1.5 rounded-full" style="width: 40%"></div>
-            </div>
-        </div>
-        <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
-            <p class="text-xs text-gray-400">Active Bookings</p>
-            <h3 class="text-xl font-bold text-white mt-1">0</h3>
-        </div>
-    </div>
-
-    <!-- Call to Action -->
-    <div class="bg-electric/20 border border-electric p-4 rounded-xl">
-        <h3 class="text-electric font-bold mb-1">Finish your profile</h3>
-        <p class="text-sm text-gray-300 mb-3">Add your intro video and portfolio to get noticed by companies.</p>
-        <button class="bg-electric text-white px-4 py-2 rounded-md text-sm font-semibold">Complete Now</button>
-    </div>
-
-    <!-- Recent Activity -->
-    <div>
-        <h3 class="text-md font-bold mb-3">Recent Activity</h3>
-        <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 text-center">
-            <p class="text-gray-400 text-sm">You have no new invitations or applications yet.</p>
-            <button class="mt-3 text-electric text-sm font-semibold">Find Campaigns →</button>
-        </div>
-    </div>
-
-    <!-- Payments & Transactions -->
-    <div class="bg-gray-800 rounded-xl p-4 border border-gray-700">
-        <h2 class="text-gold font-bold text-sm mb-3">Payments & Transactions</h2>
-        <div class="flex justify-between items-center border-b border-gray-700 pb-2 mb-2">
-            <span class="text-xs text-gray-400">Completed</span>
-            <span class="text-sm font-bold text-green-400">$0.00</span>
-        </div>
-        <div class="flex justify-between items-center">
-            <span class="text-xs text-gray-400">Pending Escrow</span>
-            <span class="text-sm font-bold text-gray-400">$0.00</span>
-        </div>
-    </div>
-
-      </main>
-          <!-- BOTTOM NAVIGATION BAR -->
-    <nav class="fixed bottom-0 w-full bg-gray-800 border-t border-gray-700 flex justify-around items-center pt-2 pb-4 z-50">
-        <button class="text-gold flex flex-col items-center">
-            <span class="text-xl">🏠</span>
-            <span class="text-[10px] mt-1 font-bold">Overview</span>
-        </button>
-        <button class="text-gray-400 flex flex-col items-center">
-            <span class="text-xl">🔍</span>
-            <span class="text-[10px] mt-1">Discover</span>
-        </button>
-        
-        <!-- Center Plus Button -->
-        <button class="bg-electric w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-lg -mt-8 border-4 border-navy">
-            +
-        </button>
-        
-        <button class="text-gray-400 flex flex-col items-center">
-            <span class="text-xl">💬</span>
-            <span class="text-[10px] mt-1">Messages</span>
-        </button>
-        
-        <!-- MORE BUTTON -->
-        <button onclick="toggleMoreMenu()" class="text-gray-400 flex flex-col items-center">
-            <span class="text-xl">☰</span>
-            <span class="text-[10px] mt-1">More</span>
-        </button>
-    </nav>
-
+    <!-- Center Plus Button -->
+    <button type="button" onclick="alert('Create New Campaign coming soon!')" class="bg-electric w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-lg -mt-8 border-4 border-navy">
+        +
+    </button>
+    
+    <button type="button" onclick="alert('Messages coming in Phase 2!')" class="text-gray-400 flex flex-col items-center">
+        <span class="text-xl">💬</span>
+        <span class="text-[10px] mt-1">Messages</span>
+    </button>
+    
+    <!-- MORE BUTTON -->
+    <button type="button" onclick="toggleMoreMenu()" class="text-gray-400 flex flex-col items-center">
+        <span class="text-xl">☰</span>
+        <span class="text-[10px] mt-1">More</span>
+    </button>
+</nav>
     <!-- MORE MENU (Slide Up) -->
     <div id="moreMenu" class="fixed inset-0 bg-black/60 z-50 hidden" onclick="toggleMoreMenu()">
         <div class="absolute bottom-0 w-full bg-gray-800 rounded-t-2xl p-6 border-t border-gray-600 transform transition-transform duration-300" onclick="event.stopPropagation()">
@@ -114,43 +132,84 @@
             <h3 class="text-lg font-bold text-gold mb-4">More Options</h3>
             
             <div class="grid grid-cols-2 gap-4">
-                <button class="bg-gray-900 p-3 rounded-lg flex items-center gap-3 border border-gray-700 text-left">
+                <button type="button" onclick="alert('My Services page coming in Phase 2!')" class="bg-gray-900 p-3 rounded-lg flex items-center gap-3 border border-gray-700 text-left">
                     <span class="text-xl">💼</span>
                     <span class="text-sm">My Services</span>
                 </button>
-                <button class="bg-gray-900 p-3 rounded-lg flex items-center gap-3 border border-gray-700 text-left">
+                <button type="button" onclick="alert('Applications page coming in Phase 2!')" class="bg-gray-900 p-3 rounded-lg flex items-center gap-3 border border-gray-700 text-left">
                     <span class="text-xl">📝</span>
                     <span class="text-sm">Applications</span>
                 </button>
-                <button class="bg-gray-900 p-3 rounded-lg flex items-center gap-3 border border-gray-700 text-left">
+                <button type="button" onclick="alert('Bookings page coming in Phase 2!')" class="bg-gray-900 p-3 rounded-lg flex items-center gap-3 border border-gray-700 text-left">
                     <span class="text-xl">📅</span>
                     <span class="text-sm">Bookings</span>
                 </button>
-                <button class="bg-gray-900 p-3 rounded-lg flex items-center gap-3 border border-gray-700 text-left">
+                <button type="button" onclick="alert('Contracts page coming in Phase 2!')" class="bg-gray-900 p-3 rounded-lg flex items-center gap-3 border border-gray-700 text-left">
                     <span class="text-xl">📄</span>
                     <span class="text-sm">Contracts</span>
                 </button>
-                <button class="bg-gray-900 p-3 rounded-lg flex items-center gap-3 border border-gray-700 text-left">
+                <button type="button" onclick="alert('Payments page coming in Phase 2!')" class="bg-gray-900 p-3 rounded-lg flex items-center gap-3 border border-gray-700 text-left">
                     <span class="text-xl">💰</span>
                     <span class="text-sm">Payments</span>
                 </button>
-                <button class="bg-gray-900 p-3 rounded-lg flex items-center gap-3 border border-gray-700 text-left">
+                <button type="button" onclick="alert('Reports page coming in Phase 2!')" class="bg-gray-900 p-3 rounded-lg flex items-center gap-3 border border-gray-700 text-left">
                     <span class="text-xl">📊</span>
                     <span class="text-sm">Reports</span>
                 </button>
-                <button class="bg-gray-900 p-3 rounded-lg flex items-center gap-3 border border-gray-700 text-left">
+                <button type="button" onclick="alert('Settings page coming in Phase 2!')" class="bg-gray-900 p-3 rounded-lg flex items-center gap-3 border border-gray-700 text-left">
                     <span class="text-xl">⚙️</span>
                     <span class="text-sm">Settings</span>
                 </button>
-                <a href="index.html" class="bg-red-900/30 p-3 rounded-lg flex items-center gap-3 border border-red-700 text-left">
+                
+                <!-- REAL LOGOUT BUTTON -->
+                <button type="button" onclick="logoutUser()" class="bg-red-900/30 p-3 rounded-lg flex items-center gap-3 border border-red-700 text-left">
                     <span class="text-xl">🚪</span>
                     <span class="text-sm text-red-400">Logout</span>
-                </a>
+                </button>
             </div>
         </div>
     </div>
 
     <script>
+        // CONNECT TO SUPABASE
+        const supabaseUrl = 'PASTE_YOUR_URL_HERE';
+        const supabaseKey = 'PASTE_YOUR_KEY_HERE';
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+        // FEATURE 1: LOAD REAL USER NAME
+        async function loadUser() {
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            if (user) {
+                // Get name from metadata
+                const userName = user.user_metadata.full_name || "Creator";
+                document.getElementById('dash-user-name').innerText = userName;
+            } else {
+                // If not logged in, kick them out
+                window.location.href = 'index.html';
+            }
+        }
+        
+        // Run this immediately when page loads
+        loadUser();
+
+        // FEATURE 2: REAL LOGOUT
+        async function logoutUser() {
+            await supabaseClient.auth.signOut();
+            window.location.href = 'index.html';
+        }
+
+        // FEATURE 3: THEME TOGGLE
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const btn = document.getElementById('theme-btn');
+            if (document.body.classList.contains('light-mode')) {
+                btn.innerText = "🌙"; 
+            } else {
+                btn.innerText = "☀️"; 
+            }
+        }
+
+        // MORE MENU
         function toggleMoreMenu() {
             const menu = document.getElementById('moreMenu');
             if (menu.classList.contains('hidden')) {
@@ -161,4 +220,4 @@
         }
     </script>
 </body>
-              </html>
+</html>
