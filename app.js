@@ -238,5 +238,22 @@ async function registerUser(event) {
 }
 
 async function loginUser() {
-    window.location.href = 'dashboard.html';
-        }
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    if(!email || !password) {
+        alert("Please enter both email and password.");
+        return;
+    }
+
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password,
+    });
+
+    if (error) {
+        alert("Login Failed: " + error.message);
+    } else {
+        window.location.href = 'dashboard.html';
+    }
+}
