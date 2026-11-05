@@ -12,19 +12,20 @@
     <style>
         body { transition: background-color 0.3s, color 0.3s; }
         
-        /* FORCEFUL LIGHT MODE OVERRIDES */
+        /* SUPER STRONG LIGHT MODE OVERRIDES */
         body.light-mode { background-color: #F3F4F6 !important; color: #111827 !important; }
-        body.light-mode header { background-color: #FFFFFF !important; border-color: #E5E7EB !important; }
+        body.light-mode .bg-navy { background-color: #F3F4F6 !important; }
         body.light-mode .bg-gray-800 { background-color: #FFFFFF !important; border-color: #E5E7EB !important; }
         body.light-mode .bg-gray-900 { background-color: #F9FAFB !important; border-color: #D1D5DB !important; }
-        body.light-mode .bg-navy { background-color: #F3F4F6 !important; }
         body.light-mode .text-white { color: #111827 !important; }
         body.light-mode .text-gray-300 { color: #4B5563 !important; }
         body.light-mode .text-gray-400 { color: #6B7280 !important; }
-        body.light-mode .text-gold { color: #B45309 !important; } /* Darker gold for contrast */
+        body.light-mode .text-gold { color: #B45309 !important; } 
         body.light-mode .border-gray-700 { border-color: #E5E7EB !important; }
         body.light-mode .border-gray-600 { border-color: #D1D5DB !important; }
-        body.light-mode .border-electric { border-color: #007BFF !important; }
+        
+        /* Fix for Terms Page Scroll */
+        #terms-page-content { max-height: 60vh; overflow-y: auto; }
     </style>
 </head>
 <body class="bg-navy text-white font-sans min-h-screen flex flex-col">
@@ -32,7 +33,7 @@
     <header class="p-4 flex justify-between items-center border-b border-gray-700">
         <h1 class="text-lg font-bold text-gold tracking-wider cursor-pointer" onclick="showPage('home')" id="main-header">ABSADIK CREATOR HUB</h1>
         <div class="flex gap-2 items-center">
-            <!-- FIXED: Added type="button" so mobile browser clicks it -->
+            <!-- THEME TOGGLE -->
             <button type="button" onclick="toggleTheme()" id="theme-btn" class="text-2xl px-2 focus:outline-none">☀️</button>
             <button onclick="showPage('login')" class="text-white px-3 py-1 rounded-md text-sm border border-gray-600" id="nav-login">Login</button>
             <button onclick="showPage('register')" class="bg-electric text-white px-3 py-1 rounded-md font-semibold text-sm" id="nav-signup">Sign Up</button>
@@ -229,14 +230,15 @@
                 <h2 class="text-2xl font-bold text-gold" id="terms-page-title">Terms & Privacy</h2>
                 <button type="button" onclick="showPage('register')" class="text-electric font-bold text-sm focus:outline-none">← Back</button>
             </div>
-            <!-- FIXED: Added default text so it's never blank -->
-            <div class="text-sm text-gray-300 space-y-4 h-96 overflow-y-auto pr-2" id="terms-page-content">
-                1. Registration is free. <br><br>
-                2. ACH charges a 10% commission on successful bookings. <br><br>
-                3. We do not hold your funds directly; all payments are processed via licensed providers (e.g., Paystack). <br><br>
-                4. Users must respect each other. <br><br>
-                5. ACH is not responsible for off-platform transactions. <br><br>
-                6. Your data is safe with us and will never be sold.
+            
+            <!-- FIXED: HARDCODED TEXT SO IT IS NEVER BLANK -->
+            <div class="text-sm text-gray-300 space-y-3" id="terms-page-content">
+                <p><strong>1. Registration:</strong> Registration is free for all users.</p>
+                <p><strong>2. Commission:</strong> ACH charges a 10% commission on successful bookings.</p>
+                <p><strong>3. Payments:</strong> We do not hold your funds directly; all payments are processed via licensed providers (e.g., Paystack).</p>
+                <p><strong>4. Conduct:</strong> Users must respect each other. Harassment is not tolerated.</p>
+                <p><strong>5. Off-Platform:</strong> ACH is not responsible for off-platform transactions.</p>
+                <p><strong>6. Privacy:</strong> Your data is safe with us and will never be sold to third parties.</p>
             </div>
         </div>
     </div>
@@ -260,4 +262,4 @@
 
     <script src="app.js"></script>
 </body>
-                                </html>
+                        </html>
