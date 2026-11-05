@@ -54,6 +54,74 @@ const translations = {
     }
 };
 
+// --- THEME TOGGLE (NIGHT MODE) ---
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    const btn = document.getElementById('theme-btn');
+    if (document.body.classList.contains('dark-mode')) {
+        btn.innerText = "☀️"; // Sun icon for Light mode
+    } else {
+        btn.innerText = "🌙"; // Moon icon for Dark mode
+    }
+}
+
+// --- PASSWORD STRENGTH LOGIC ---
+let isPasswordSecure = false;
+let isPasswordMatched = false;
+
+function checkPasswordStrength() {
+    const pass = document.getElementById('ph-password').value;
+    
+    const hasLength = pass.length >= 8;
+    const hasNumber = /\d/.test(pass);
+    const hasUpper = /[A-Z]/.test(pass);
+
+    // Update UI checkmarks
+    document.getElementById('req-length').innerHTML = hasLength ? "✅ <span class='text-green-500'>At least 8 characters</span>" : "❌ At least 8 characters";
+    document.getElementById('req-number').innerHTML = hasNumber ? "✅ <span class='text-green-500'>At least 1 number</span>" : "❌ At least 1 number";
+    document.getElementById('req-upper').innerHTML = hasUpper ? "✅ <span class='text-green-500'>At least 1 uppercase letter</span>" : "❌ At least 1 uppercase letter";
+
+    isPasswordSecure = hasLength && hasNumber && hasUpper;
+    checkFormStatus();
+}
+
+// --- PASSWORD MATCH LOGIC ---
+function checkPasswordMatch() {
+    const pass = document.getElementById('ph-password').value;
+    const confirm = document.getElementById('ph-confirm').value;
+    const msg = document.getElementById('match-msg');
+
+    if (confirm.length === 0) {
+        msg.classList.add('hidden');
+        isPasswordMatched = false;
+    } else if (pass === confirm) {
+        msg.classList.remove('hidden');
+        msg.classList.add('text-green-500');
+        msg.classList.remove('text-red-500');
+        msg.innerText = "✅ Passwords Match";
+        isPasswordMatched = true;
+    } else {
+        msg.classList.remove('hidden');
+        msg.classList.add('text-red-500');
+        msg.classList.remove('text-green-500');
+        msg.innerText = "❌ Passwords do not match";
+        isPasswordMatched = false;
+    }
+    checkFormStatus();
+}
+
+// --- ENABLE/DISABLE SUBMIT BUTTON ---
+function checkFormStatus() {
+    const btn = document.getElementById('btn-submit');
+    if (isPasswordSecure && isPasswordMatched) {
+        btn.disabled = false;
+        btn.className = "w-full bg-electric hover:bg-blue-600 text-white font-bold py-3 rounded-md mt-4 transition cursor-pointer";
+    } else {
+        btn.disabled = true;
+        btn.className = "w-full bg-gray-600 text-gray-400 font-bold py-3 rounded-md mt-4 cursor-not-allowed transition";
+    }
+}
+
 function changeLanguage(lang) {
     const t = translations[lang];
     if(!t) return;
@@ -68,7 +136,11 @@ function changeLanguage(lang) {
     if(document.getElementById('lbl-country')) document.getElementById('lbl-country').innerText = t.lblCountry;
     if(document.getElementById('lbl-password')) document.getElementById('lbl-password').innerText = t.lblPassword;
     if(document.getElementById('lbl-confirm')) document.getElementById('lbl-confirm').innerText = t.lblConfirm;
-    if(document.getElementById('btn-submit')) document.getElementById('btn-submit').innerText = t.btnSubmit;
+    if(document.getElementById('btn-submit') && document.getElementById('btn-submit').disabled) {
+        document.getElementById('btn-submit').innerText = t.btnSubmit;
+    } else if (document.getElementById('btn-submit')) {
+        document.getElementById('btn-submit').innerText = t.btnSubmit;
+    }
     if(document.getElementById('otp-title')) document.getElementById('otp-title').innerText = t.otpTitle;
     if(document.getElementById('btn-verify')) document.getElementById('btn-verify').innerText = t.btnVerify;
     if(document.getElementById('login-title')) document.getElementById('login-title').innerText = t.loginTitle;
@@ -81,7 +153,7 @@ function changeLanguage(lang) {
     if(document.getElementById('ph-confirm')) document.getElementById('ph-confirm').placeholder = t.phConfirm;
 
     if(document.getElementById('terms-page-title')) document.getElementById('terms-page-title').innerText = t.termsTitle;
-    if(document.getElementById('terms-page-content')) document.getElementById('terms-page-content').innerHTML = t.termsContent;
+    if(document.getElementById('terms-page-content')) document.getElementById('terms-page-content').innerText = t.termsContent;
 
     if(document.getElementById('lbl-terms')) {
         document.getElementById('lbl-terms').innerHTML = `${t.agreeText} <a href="#" onclick="showPage('terms')" class="text-gold underline">${t.termsLink}</a> ${t.andText} <a href="#" onclick="showPage('terms')" class="text-gold underline">${t.privacyLink}</a>.`;
@@ -91,17 +163,13 @@ function changeLanguage(lang) {
 }
 
 function showPage(pageId) {
-    // Hide ALL pages first
     const pages = ['home', 'register', 'otp', 'login', 'terms'];
     pages.forEach(id => {
         const el = document.getElementById('page-' + id);
         if (el) el.classList.add('hidden');
     });
-    
-    // Then show the selected page
     const target = document.getElementById('page-' + pageId);
     if (target) target.classList.remove('hidden');
-    
     window.scrollTo(0, 0);
 }
 
@@ -110,27 +178,29 @@ function togglePassword(inputId, btnId) {
     const btn = document.getElementById(btnId);
     if (input.type === "password") {
         input.type = "text";
-        btn.innerText = "👁️"; // Show (open eye)
+        btn.innerText = "👁️"; 
     } else {
         input.type = "password";
-        btn.innerText = "🚫"; // Hide (slash/cancel)
+        btn.innerText = "🚫"; 
     }
 }
 
 async function registerUser(event) {
     event.preventDefault(); 
     
+    // Double check before submitting to Supabase
+    if (!isPasswordSecure || !isPasswordMatched) {
+        alert("Please ensure your password meets all requirements and matches.");
+        return;
+    }
+
     const email = document.getElementById('ph-email').value; 
     const password = document.getElementById('ph-password').value;
-    const confirmPassword = document.getElementById('ph-confirm').value;
     const fullName = document.getElementById('ph-name').value;
     const userRole = document.getElementById('user-role').value;
     const phoneCode = document.getElementById('phone-code').value;
     const phoneNumber = document.getElementById('ph-phone').value;
     const country = document.getElementById('user-country').value;
-    
-    if (password !== confirmPassword) { alert("Error: Passwords do not match!"); return; }
-    if (password.length < 6) { alert("Error: Password must be at least 6 characters."); return; }
     
     const fullPhoneNumber = phoneCode + phoneNumber;
 
@@ -157,4 +227,4 @@ async function registerUser(event) {
 
 async function loginUser() {
     window.location.href = 'dashboard.html';
-        }
+    }
